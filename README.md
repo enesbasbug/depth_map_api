@@ -1,15 +1,51 @@
-python -m venv venv
-venv\Scripts\activate
+# Zoe Depth Estimation
 
-# CPU Installation
+Depth Estimation API using Python, FastAPI and Docker.
 
-pip install torch==1.13.1+cpu torchvision==0.14.1+cpu torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cpu
+## Usage/Examples
 
-# GPU Installation
+### CLI Usage
 
-pip install torch==1.13.1+cu116 torchvision==0.14.1+cu116 torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cu116
+```bash
+usage: cli.py [-h] input_image output_image
 
-pip install pillow scipy matplotlib
-pip install timm==0.6.7
+Depth estimation using ZoeDepth.
 
-pip freeze > requirements.txt
+positional arguments:
+  input_image   Path to input image.
+  output_image  Path to output depth map.
+
+options:
+  -h, --help    show this help message and exit
+```
+
+### API Usage
+
+```
+http://127.0.0.1:8041/predict
+```
+
+## Installation
+
+Install depth estimation project with pip
+
+```bash
+pip install -r requirements.txt
+```
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`IMG_API_KEY`
+
+## Deployment
+
+To deploy this project run
+
+```bash
+docker build -t depth_estimation .
+docker run -d -p 8041:8041 depth_estimation
+```
+
+## Reference: https://github.com/cobanov
